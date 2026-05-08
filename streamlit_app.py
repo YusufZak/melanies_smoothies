@@ -28,7 +28,7 @@ ingredients_list = st.multiselect(
     , max_selections=5
 )
 
-if ingredients_list:
+if (ingredients_list and name_on_order):
     
     ingredients_string = ''
     for fruit_chosen in ingredients_list:
@@ -37,7 +37,7 @@ if ingredients_list:
     st.write(ingredients_string)
 
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients)
-                    values ('""" + ingredients_string + """')"""
+                    values ('""" + ingredients_string + """' , '""" + name_on_order + """')"""
 
     #st.write(my_insert_stmt)
     time_to_insert = st.button('Submit Order')
